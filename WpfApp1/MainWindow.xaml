@@ -1,72 +1,103 @@
-﻿<Window x:Class="WpfApp1.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
-        Title="Benchmark - Измерение производительности" Height="800" Width="1200">
+﻿<Window
+    x:Class="WpfApp1.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+    Title="Benchmark - Измерение производительности"
+    Width="1200"
+    Height="800">
 
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Padding" Value="10,5"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Margin" Value="5" />
         </Style>
         <Style TargetType="ComboBox">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Width" Value="200" />
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,0,5,0" />
         </Style>
     </Window.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
-        <TextBlock Grid.Row="0" Text="Измерение производительности с помощью Benchmark на разных задачах" 
-                   FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <!--  Заголовок  -->
+        <TextBlock
+            Grid.Row="0"
+            Margin="0,0,0,20"
+            HorizontalAlignment="Center"
+            FontSize="16"
+            FontWeight="Bold"
+            Text="Измерение производительности с помощью Benchmark на разных задачах" />
 
-        <!-- Панель управления -->
-        <GroupBox Grid.Row="1" Header="Параметры тестирования" Padding="10">
+        <!--  Панель управления  -->
+        <GroupBox
+            Grid.Row="1"
+            Padding="10"
+            Header="Параметры тестирования">
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="Тип задачи:"/>
+                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                    <TextBlock Text="Тип задачи:" />
                     <ComboBox x:Name="TaskTypeComboBox" SelectedIndex="0">
-                        <ComboBoxItem Content="Count Numbers Above Average"/>
-                        <ComboBoxItem Content="Find Max/Min Identical Elements"/>
-                        <ComboBoxItem Content="Find Prime Numbers"/>
-                        <ComboBoxItem Content="Max/Min Even/Odd Numbers"/>
-                        <ComboBoxItem Content="Average Positive/Negative Numbers"/>
+                        <ComboBoxItem Content="Count Numbers Above Average" />
+                        <ComboBoxItem Content="Find Max/Min Identical Elements" />
+                        <ComboBoxItem Content="Find Prime Numbers" />
+                        <ComboBoxItem Content="Max/Min Even/Odd Numbers" />
+                        <ComboBoxItem Content="Average Positive/Negative Numbers" />
                     </ComboBox>
 
-                    <TextBlock Text="Размер данных:"/>
-                    <ComboBox x:Name="SizeComboBox" Width="120" SelectedIndex="2">
-                        <ComboBoxItem Content="10,000"/>
-                        <ComboBoxItem Content="100,000"/>
-                        <ComboBoxItem Content="1,000,000"/>
-                        <ComboBoxItem Content="5,000,000"/>
+                    <TextBlock Text="Размер данных:" />
+                    <ComboBox
+                        x:Name="SizeComboBox"
+                        Width="120"
+                        SelectedIndex="2">
+                        <ComboBoxItem Content="10,000" />
+                        <ComboBoxItem Content="100,000" />
+                        <ComboBoxItem Content="1,000,000" />
+                        <ComboBoxItem Content="5,000,000" />
                     </ComboBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <ProgressBar x:Name="ProgressBar" Height="10" Width="200" Margin="5" Maximum="100"/>
+                    <ProgressBar
+                        x:Name="ProgressBar"
+                        Width="200"
+                        Height="10"
+                        Margin="5"
+                        Maximum="100" />
 
-                    <Button x:Name="RunBenchmarkBtn" Content="Запустить тесты" 
-                            Click="RunBenchmarkBtn_Click" Background="#FF008000" Foreground="White"/>
-                    <Button x:Name="SaveToDbBtn" Content="Сохранить в БД" 
-                            Click="SaveToDbBtn_Click" Background="#FF1E90FF" Foreground="White"/>
-                    <Button x:Name="ClearResultsBtn" Content="Очистить результаты" 
-                            Click="ClearResultsBtn_Click" Background="#FFDC143C" Foreground="White"/>
+                    <Button
+                        x:Name="RunBenchmarkBtn"
+                        Background="#FF008000"
+                        Click="RunBenchmarkBtn_Click"
+                        Content="Запустить тесты"
+                        Foreground="White" />
+                    <Button
+                        x:Name="SaveToDbBtn"
+                        Background="#FF1E90FF"
+                        Click="SaveToDbBtn_Click"
+                        Content="Сохранить в БД"
+                        Foreground="White" />
+                    <Button
+                        x:Name="ClearResultsBtn"
+                        Background="#FFDC143C"
+                        Click="ClearResultsBtn_Click"
+                        Content="Очистить результаты"
+                        Foreground="White" />
                 </StackPanel>
             </StackPanel>
         </GroupBox>
 
-        <!-- Графики -->
+        <!--  Графики  -->
         <TabControl Grid.Row="2" Margin="0,10,0,0">
             <TabItem Header="Время выполнения">
                 <lvc:CartesianChart x:Name="TimeChart" LegendPosition="Right" />
@@ -79,25 +110,51 @@
             </TabItem>
         </TabControl>
 
-        <!-- Таблица результатов -->
-        <GroupBox Grid.Row="3" Header="Детальные результаты" Margin="0,10,0,0">
+        <!--  Таблица результатов  -->
+        <GroupBox
+            Grid.Row="3"
+            Margin="0,10,0,0"
+            Header="Детальные результаты">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" x:Name="StatusText" Text="Готов к тестированию..." 
-                          FontStyle="Italic" Margin="5"/>
+                <TextBlock
+                    x:Name="StatusText"
+                    Grid.Row="0"
+                    Margin="5"
+                    FontStyle="Italic"
+                    Text="Готов к тестированию..." />
 
-                <DataGrid Grid.Row="1" x:Name="ResultsDataGrid" AutoGenerateColumns="False" 
-                         IsReadOnly="True" Margin="5">
+                <DataGrid
+                    x:Name="ResultsDataGrid"
+                    Grid.Row="1"
+                    Margin="5"
+                    AutoGenerateColumns="False"
+                    IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Метод" Binding="{Binding MethodName}" Width="2*"/>
-                        <DataGridTextColumn Header="Время (ms)" Binding="{Binding ExecutionTime}" Width="*"/>
-                        <DataGridTextColumn Header="Память (MB)" Binding="{Binding MemoryUsed}" Width="*"/>
-                        <DataGridTextColumn Header="Результат" Binding="{Binding Result}" Width="*"/>
-                        <DataGridTextColumn Header="Ускорение" Binding="{Binding Speedup}" Width="*"/>
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding MethodName}"
+                            Header="Метод" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding ExecutionTime}"
+                            Header="Время (ms)" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding MemoryUsed}"
+                            Header="Память (MB)" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Result}"
+                            Header="Результат" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Speedup}"
+                            Header="Ускорение" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
